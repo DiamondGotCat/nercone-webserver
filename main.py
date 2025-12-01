@@ -113,7 +113,7 @@ async def short_url(request: Request, url_id: str):
             data = json.load(f)
     except Exception:
         return PlainTextResponse("Failed to load Short URL configuration.", status_code=500)
-    current_id = url_id
+    current_id = url_id.rstrip("/")
     visited = set()
     for _ in range(10):
         if current_id in visited:
@@ -138,35 +138,37 @@ async def short_url(request: Request, url_id: str):
 
 @app.get("/{full_path:path}")
 async def default_response(request: Request, full_path: str) -> Response:
-    if full_path == "" or full_path == "/":
-        template_name = "index.html"
-    elif not full_path.endswith(".html"):
+    if not full_path.endswith(".html"):
         base_dir = Path(__file__).parent / "files"
-        target_path = (base_dir / full_path).resolve()
+        safe_full_path = full_path.lstrip('/')
+        target_path = (base_dir / safe_full_path).resolve()
         if not str(target_path).startswith(str(base_dir.resolve())):
             return PlainTextResponse("Blocked by Nercone Web Server", status_code=403)
         if target_path.exists() and target_path.is_file():
             return FileResponse(target_path)
-        else:
-            return templates.TemplateResponse(
-                status_code=404,
-                request=request,
-                name="404.html"
-            )
+    templates_to_try = []
+    if full_path == "" or full_path == "/":
+        templates_to_try.append("index.html")
+    elif full_path.endswith(".html"):
+        templates_to_try.append(full_path.lstrip('/'))
     else:
-        template_name = full_path
-    try:
-        return templates.TemplateResponse(
-            status_code=200,
-            request=request,
-            name=template_name
-        )
-    except TemplateNotFound:
-        return templates.TemplateResponse(
-            status_code=404,
-            request=request,
-            name="404.html"
-        )
+        clean_path = full_path.strip('/')
+        templates_to_try.append(f"{clean_path}.html")
+        templates_to_try.append(f"{clean_path}/index.html")
+    for template_name in templates_to_try:
+        try:
+            return templates.TemplateResponse(
+                status_code=200,
+                request=request,
+                name=template_name
+            )
+        except TemplateNotFound:
+            continue
+    return templates.TemplateResponse(
+        status_code=404,
+        request=request,
+        name="404.html"
+    )
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=80, log_level="error")
