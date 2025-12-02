@@ -90,17 +90,17 @@ async def middleware(request: Request, call_next):
             f.write(str(exception))
             f.write("\n")
     status_code_color = "blue"
-    if response.status_code == 200 or response.status_code == 307:
+    if str(response.status_code).startswith("1"):
+        status_code_color = "blue"
+    elif str(response.status_code).startswith("2"):
         status_code_color = "green"
-    elif response.status_code == 400:
+    elif str(response.status_code).startswith("3"):
+        status_code_color = "green"
+    elif str(response.status_code).startswith("4"):
         status_code_color = "yellow"
-    elif response.status_code == 403:
-        status_code_color = "yellow"
-    elif response.status_code == 404:
-        status_code_color = "yellow"
-    elif response.status_code == 500:
+    elif str(response.status_code).startswith("5"):
         status_code_color = "red"
-    logger.log(f"{ModernColor.color(status_code_color)}{response.status_code}{ModernColor.color('reset')} {access_id} FROM {request.client.host} ORGN {origin_client_host} USING {request.state.client_type}")
+    logger.log(f"{ModernColor.color(status_code_color)}{response.status_code}{ModernColor.color('reset')} {access_id} {request.client.host} {ModernColor.color('gray')}{request.url}{ModernColor.color('reset')}")
     return response
 
 @app.get("/to/{url_id}")
