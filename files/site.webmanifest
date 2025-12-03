@@ -4,7 +4,7 @@
     "description": "作りたいものを作り、やりたくないことからは逃げる学生",
     "start_url": "https://diamondgotcat.net/",
     "display": "standalone",
-    "theme_color": "#1e1e1e",
+    "theme_color": "oklch(0.349 0.014 264.0)",
     "background_color": "oklch(0.197 0.008 264.0)",
     "icons": [
         {
