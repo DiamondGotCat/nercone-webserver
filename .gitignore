@@ -1,2 +1,8 @@
+# Log files
 logs/*.log
 logs/access/*.txt
+
+# macOS
+.DS_Store
+*/.DS_Store
+**/.DS_Store
