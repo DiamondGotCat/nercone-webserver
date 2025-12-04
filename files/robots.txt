@@ -4,7 +4,7 @@
 # │ │      │                        antiCAPTCHA  │
 # │ ╰──────╯                    Privacy | Terms  │
 # ╰──────────────────────────────────────────────╯
-# Note: Inspired by https://fxtwitter.com/robots.txt
+# Note: "I'm a robot" Box Inspired by https://fxtwitter.com/robots.txt
 #       If want to delete this, Please send deletion request to: nercone@diamondgotcat.net
 #       I delete this text if on received deletion request from FxEmbed.
 #       I don't check my emails often so my response may be delayed. Sorry.
