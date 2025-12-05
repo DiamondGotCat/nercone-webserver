@@ -270,4 +270,4 @@ async def default_response(request: Request, full_path: str) -> Response:
     )
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=80, log_level="error", workers=12)
+    uvicorn.run(app, host="0.0.0.0", port=80, log_level="error")
