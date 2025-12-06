@@ -275,5 +275,6 @@ if __name__ == "__main__":
     cores_count = multiprocessing.cpu_count()
     logger.log(f"CPU Core Count: {cores_count} Core(s)")
     workers_count = cores_count*2
-    logger.log(f"Starting uvicorn with {workers_count} workers.")
+    logger.log(f"Starting with {workers_count} workers.")
     uvicorn.run("__main__:app", host="0.0.0.0", port=80, log_level="error", workers=workers_count)
+    logger.log("Nercone Web Server Stopped.")
