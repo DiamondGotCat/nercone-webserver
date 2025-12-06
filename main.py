@@ -61,6 +61,7 @@ class AccessClientType(Enum):
 
 @app.middleware("http")
 async def middleware(request: Request, call_next):
+    global logger
     if request.scope.get("state", {}).get("is_retry", False):
         return await call_next(request)
     request_body = await request.body()
