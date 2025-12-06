@@ -16,7 +16,7 @@ from bs4 import BeautifulSoup
 
 app = FastAPI()
 templates = Jinja2Templates(directory="html")
-log_filepath = Path(__file__).parent.joinpath("logs", f"{int(datetime.now(timezone.utc).timestamp())}.log")
+log_filepath = Path(__file__).parent.joinpath("logs", "main.log")
 logger = ModernLogging("nercone-webserver", filepath=log_filepath)
 
 def list_articles():
@@ -61,7 +61,6 @@ class AccessClientType(Enum):
 
 @app.middleware("http")
 async def middleware(request: Request, call_next):
-    global logger
     if request.scope.get("state", {}).get("is_retry", False):
         return await call_next(request)
     request_body = await request.body()
