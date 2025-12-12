@@ -46,9 +46,223 @@
         <meta name="twitter:title" content="{{ self.title() }}">
         <meta name="twitter:description" content="{{ self.description() }}">
         <meta name="twitter:image" content="https://diamondgotcat.net/assets/images/nercone.png">
-        <!-- Stylesheets / Scripts etc. -->
+        <!-- Scripts / Stylesheets etc. -->
         <link rel="manifest" href="/site.webmanifest">
-        <link rel="stylesheet" href="/assets/styles/main.css">
+        <style>
+            html {
+                color: oklch(55% 0 0);
+                background-color: oklch(0.982 0.002 256.0);
+                line-height: 1.2;
+                margin: 0;
+                font-family: "SF Pro", "M PLUS 2", sans-serif;
+                font-optical-sizing: auto;
+                font-weight: 400;
+                font-style: normal;
+            }
+            body {
+                margin: 0;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+            }
+            header {
+                background-color: oklch(40% 0 0);
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                padding: 24px;
+                display: flex;
+                align-items: center;
+                gap: 16px;
+            }
+            main {
+                padding: 24px;
+                padding-top: 70px;
+                padding-bottom: 10px;
+                flex: 1;
+            }
+            footer {
+                padding: 24px;
+                display: flex;
+                align-items: center;
+                gap: 16px;
+            }
+            section {
+                padding-top: 8px;
+                padding-bottom: 4px;
+            }
+            a {
+                text-decoration: underline;
+                color: inherit;
+            }
+            h1 {
+                font-weight: 700;
+            }
+            h2 {
+                font-weight: 500;
+            }
+            h1, h2, h3, h4, h5, h6 {
+                color: oklch(0% 0 0);
+            }
+            pre {
+                color: oklch(45% 0 0);
+                background-color: oklch(0.959 0.004 256.0);
+                padding: 10px;
+                padding-left: 20px;
+                border-radius: 5px;
+                overflow-x: auto;
+                white-space: pre;
+                line-height: 32px;
+                font-family: "SF Mono", "M PLUS 1 Code", sans-serif;
+                font-optical-sizing: auto;
+                font-style: normal;
+            }
+            .code {
+                background-color: oklch(0.959 0.004 256.0);
+                font-size: smaller;
+                padding: 2px;
+                border-radius: 5px;
+                white-space: pre;
+                font-family: "SF Mono", "M PLUS 1 Code", sans-serif;
+                font-optical-sizing: auto;
+                font-style: normal;
+            }
+            .banner {
+                height: 50px;
+                width: auto;
+                border-radius: 6px;
+            }
+            .flex {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+            }
+            .flex > * {
+                margin: 0;
+            }
+            .flex-1 {
+                flex: 1;
+            }
+            .text-small {
+                font-size: small;
+            }
+            .text-bold {
+                font-weight: 700;
+            }
+            .text-no-decoration {
+                text-decoration: none;
+            }
+            .text-underline {
+                text-decoration: underline;
+            }
+            .text-highlight {
+                color: oklch(35% 0 0);
+            }
+            .text-lowlight {
+                color: oklch(65% 0 0);
+            }
+            h1.text-lowlight, h2.text-lowlight, h3.text-lowlight, h4.text-lowlight, h5.text-lowlight, h6.text-lowlight {
+                color: oklch(40% 0 0);
+            }
+            .text-white {
+                color: oklch(100% 0 0);
+            }
+            .text-black {
+                color: oklch(0% 0 0);
+            }
+            .text-red {
+                color: oklch(0.610 0.186 17.0);
+            }
+            .text-orange {
+                color: oklch(0.626 0.187 55.0);
+            }
+            .text-yellow {
+                color: oklch(0.725 0.187 91.0);
+            }
+            .text-green {
+                color: oklch(0.623 0.178 145.0);
+            }
+            .text-blue {
+                color: oklch(0.587 0.193 252.0);
+            }
+            .text-purple {
+                color: oklch(0.581 0.192 295.0);
+            }
+            .narrow-height {
+                line-height: 0;
+            }
+            .hide {
+                display: none;
+            }
+            @media (max-width: 430px) {
+                .hide.show-on-small {
+                    display: block;
+                }
+            }
+            @media (min-width: 430px) {
+                .hide.show-on-medium {
+                    display: block;
+                }
+            }
+            @media (min-width: 730px) {
+                .hide.show-on-large {
+                    display: block;
+                }
+            }
+            @media (prefers-color-scheme: dark) {
+                html {
+                    color: oklch(75% 0 0);
+                    background-color: oklch(0.165 0.007 264.0);
+                }
+                header {
+                    background-color: oklch(0.303 0.013 264.0);
+                }
+                h1, h2, h3, h4, h5, h6 {
+                    color: #ffffff;
+                }
+                pre {
+                    color: oklch(75% 0 0);
+                    background-color: oklch(0.197 0.008 264.0);
+                }
+                .code {
+                    background-color: oklch(0.197 0.008 264.0);
+                }
+                .text-highlight {
+                    color: oklch(85% 0 0);
+                }
+                .text-lowlight {
+                    color: oklch(50% 0 0);
+                }
+                h1.text-lowlight, h2.text-lowlight, h3.text-lowlight, h4.text-lowlight, h5.text-lowlight, h6.text-lowlight {
+                    color: oklch(80% 0 0);
+                }
+                .text-white {
+                    color: oklch(100% 0 0);
+                }
+                .text-black {
+                    color: oklch(0% 0 0);
+                }
+                .text-red {
+                    color: oklch(0.513 0.168 17.0);
+                }
+                .text-orange {
+                    color: oklch(0.588 0.189 55.0);
+                }
+                .text-yellow {
+                    color: oklch(0.725 0.187 91.0);
+                }
+                .text-green {
+                    color: oklch(0.623 0.178 145.0);
+                }
+                .text-blue {
+                    color: oklch(0.579 0.191 252.0);
+                }
+                .text-purple {
+                    color: oklch(0.581 0.192 295.0);
+                }
+            }
+        </style>
         {% block extra_head %}{% endblock %}
     </head>
     <body>
