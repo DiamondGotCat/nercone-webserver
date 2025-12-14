@@ -1,5 +1,8 @@
+import re
 import json
 import uuid
+import shutil
+import subprocess
 import uvicorn
 import multiprocessing
 from enum import Enum
@@ -19,6 +22,9 @@ templates = Jinja2Templates(directory="html")
 log_filepath = Path(__file__).parent.joinpath("logs", "main.log")
 logger = ModernLogging("nercone-webserver", filepath=log_filepath)
 log_exclude_paths = ["status"]
+
+def strip_ip_chars(s: str) -> str:
+    return re.sub(r'[^0-9A-Fa-f:.]', '', s)
 
 def list_articles():
     base_dir = Path(__file__).parent / "html"
@@ -176,6 +182,18 @@ async def middleware(request: Request, call_next):
             f.write(f"REQUEST.HEAD[{key}]: {value}\n")
         for key, value in request.cookies.items():
             f.write(f"REQUEST.COOK[{key}]: {value}\n")
+        try:
+            whois_proc = subprocess.Popen([shutil.which("whois"), strip_ip_chars(str(origin_client_host))], encoding="utf-8", stdout=subprocess.PIPE, subprocess.STDOUT)
+            whois_output: str = ""
+            for line in whois_proc.stdout:
+                whois_output += line
+            whois_proc.wait()
+            if whois_proc.returncode == 0:
+                f.write("[WHOIS]\n")
+                f.write(whois_output)
+                f.write("\n")
+        except:
+            pass
         f.write("[RESPONSE]\n")
         f.write(f"RESPONSE.CODE: {response.status_code}\n")
         f.write(f"RESPONSE.CHAR: {response.charset}\n")
