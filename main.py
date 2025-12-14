@@ -2,6 +2,7 @@ import re
 import json
 import uuid
 import shutil
+import random
 import subprocess
 import uvicorn
 import multiprocessing
@@ -22,6 +23,17 @@ templates = Jinja2Templates(directory="html")
 log_filepath = Path(__file__).parent.joinpath("logs", "main.log")
 logger = ModernLogging("nercone-webserver", filepath=log_filepath)
 log_exclude_paths = ["status"]
+block_messages = [
+    "Nice try, but this system is a bit ahead of that.",
+    "That approach is already accounted for.",
+    "That attack is far too primitive for this system.",
+    "Please upgrade your attack techniques.",
+    "You'll need a better idea than that.",
+    "That attack is far too low-level to matter.",
+    "Outdated exploit. Try again.",
+    "404 Vulnerability Not Found.",
+    "Please upgrade your hacking skills."
+]
 
 def strip_ip_chars(s: str) -> str:
     return re.sub(r'[^0-9A-Fa-f:.]', '', s)
@@ -265,12 +277,14 @@ async def short_url(request: Request, url_id: str):
 
 @app.api_route("/{full_path:path}", methods=["GET", "POST", "HEAD"])
 async def default_response(request: Request, full_path: str) -> Response:
+    if any(t in full_path for t in ["php", "cgi", "wp-", "admin", "plugins"]):
+        return PlainTextResponse(random.choice(block_messages), status_code=404)
     if not full_path.endswith(".html"):
         base_dir = Path(__file__).parent / "files"
         safe_full_path = full_path.lstrip('/')
         target_path = (base_dir / safe_full_path).resolve()
         if not str(target_path).startswith(str(base_dir.resolve())):
-            return PlainTextResponse("Blocked by Nercone Web Server", status_code=403)
+            return PlainTextResponse(random.choice(block_messages), status_code=403)
         if target_path.exists() and target_path.is_file():
             return FileResponse(target_path)
     templates_to_try = []
