@@ -183,7 +183,7 @@ async def middleware(request: Request, call_next):
         for key, value in request.cookies.items():
             f.write(f"REQUEST.COOK[{key}]: {value}\n")
         try:
-            whois_proc = subprocess.Popen([shutil.which("whois"), strip_ip_chars(str(origin_client_host))], encoding="utf-8", stdout=subprocess.PIPE, subprocess.STDOUT)
+            whois_proc = subprocess.Popen([shutil.which("whois"), strip_ip_chars(str(origin_client_host))], encoding="utf-8", stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
             whois_output: str = ""
             for line in whois_proc.stdout:
                 whois_output += line
