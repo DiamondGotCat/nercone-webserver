@@ -6,18 +6,18 @@
         <title>{% block title %}Nercone (ネルコン){% endblock %}</title>
         <meta name="description" content="{% block description %}No description.{% endblock %}">
         <!-- Favicon -->
-        <link rel="icon" href="/assets/favicon/default/favicon.svg" type="image/svg+xml" media="(prefers-color-scheme:no-preference)">
-        <link rel="icon" href="/assets/favicon/light/favicon.svg" type="image/svg+xml" media="(prefers-color-scheme:light)">
-        <link rel="icon" href="/assets/favicon/dark/favicon.svg" type="image/svg+xml" media="(prefers-color-scheme:dark)">
-        <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/default/favicon-32x32.png" media="(prefers-color-scheme:no-preference)">
-        <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/default/favicon-16x16.png" media="(prefers-color-scheme:no-preference)">
-        <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/default/apple-touch-icon.png" media="(prefers-color-scheme:no-preference)">
-        <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/light/favicon-32x32.png" media="(prefers-color-scheme:light)">
-        <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/light/favicon-16x16.png" media="(prefers-color-scheme:light)">
-        <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/light/apple-touch-icon.png" media="(prefers-color-scheme:light)">
-        <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/dark/favicon-32x32.png" media="(prefers-color-scheme:dark)">
-        <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/dark/favicon-16x16.png" media="(prefers-color-scheme:dark)">
-        <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/dark/apple-touch-icon.png" media="(prefers-color-scheme:dark)">
+        <link rel="icon" type="image/svg+xml" href="/assets/favicon/default/favicon.svg" media="(prefers-color-scheme:no-preference)">
+        <link rel="icon" type="image/svg+xml" href="/assets/favicon/light/favicon.svg" media="(prefers-color-scheme:light)">
+        <link rel="icon" type="image/svg+xml" href="/assets/favicon/dark/favicon.svg" media="(prefers-color-scheme:dark)">
+        <link rel="icon" type="image/png" href="/assets/favicon/default/favicon-32x32.png" media="(prefers-color-scheme:no-preference)" sizes="32x32">
+        <link rel="icon" type="image/png" href="/assets/favicon/default/favicon-16x16.png" media="(prefers-color-scheme:no-preference)" sizes="16x16">
+        <link rel="apple-touch-icon" href="/assets/favicon/default/apple-touch-icon.png" media="(prefers-color-scheme:no-preference)" sizes="180x180">
+        <link rel="icon" type="image/png" href="/assets/favicon/light/favicon-32x32.png" media="(prefers-color-scheme:light)" sizes="32x32">
+        <link rel="icon" type="image/png" href="/assets/favicon/light/favicon-16x16.png" media="(prefers-color-scheme:light)" sizes="16x16">
+        <link rel="apple-touch-icon" href="/assets/favicon/light/apple-touch-icon.png" media="(prefers-color-scheme:light)" sizes="180x180">
+        <link rel="icon" type="image/png" href="/assets/favicon/dark/favicon-32x32.png" media="(prefers-color-scheme:dark)" sizes="32x32">
+        <link rel="icon" type="image/png" href="/assets/favicon/dark/favicon-16x16.png" media="(prefers-color-scheme:dark)" sizes="16x16">
+        <link rel="apple-touch-icon" href="/assets/favicon/dark/apple-touch-icon.png" media="(prefers-color-scheme:dark)" sizes="180x180">
         <!-- for Crawlers -->
         <link rel="canonical" href="https://diamondgotcat.net/">
         <meta name="robots" content="index, follow">
@@ -38,7 +38,6 @@
         <meta name="twitter:image" content="https://diamondgotcat.net/assets/images/nercone.png">
         <!-- Scripts / Stylesheets etc. -->
         <link rel="manifest" href="/site.webmanifest">
-        <link rel="preconnect" href="https://assets.d-g-c.net">
         <style>
             @font-face {
                 font-family: "MesloLGS Nerd Font";
@@ -46,7 +45,7 @@
                 font-weight: 400;
                 src:
                     local("MesloLGS Nerd Font"),
-                    url("https://assets.d-g-c.net/fonts/MesloLGSNerdFont-Regular.woff2") format("woff2")
+                    url("https://diamondgotcat.net/assets/fonts/MesloLGSNerdFont-Regular.woff2") format("woff2")
             }
             @font-face {
                 font-family: "MesloLGS Nerd Font";
@@ -54,7 +53,7 @@
                 font-weight: 700;
                 src:
                     local("MesloLGS Nerd Font"),
-                    url("https://assets.d-g-c.net/fonts/MesloLGSNerdFont-Bold.woff2") format("woff2")
+                    url("https://diamondgotcat.net/assets/fonts/MesloLGSNerdFont-Bold.woff2") format("woff2")
             }
             @font-face {
                 font-family: "MesloLGS Nerd Font";
@@ -62,7 +61,7 @@
                 font-weight: 400;
                 src:
                     local("MesloLGS Nerd Font"),
-                    url("https://assets.d-g-c.net/fonts/MesloLGSNerdFont-Italic.woff2") format("woff2")
+                    url("https://diamondgotcat.net/assets/fonts/MesloLGSNerdFont-Italic.woff2") format("woff2")
             }
             @font-face {
                 font-family: "MesloLGS Nerd Font";
@@ -70,14 +69,14 @@
                 font-weight: 700;
                 src:
                     local("MesloLGS Nerd Font"),
-                    url("https://assets.d-g-c.net/fonts/MesloLGSNerdFont-BoldItalic.woff2") format("woff2")
+                    url("https://diamondgotcat.net/assets/fonts/MesloLGSNerdFont-BoldItalic.woff2") format("woff2")
             }
             html {
                 color: oklch(55% 0 0);
                 background-color: oklch(100% 0 0);
                 line-height: 1.2;
                 margin: 0;
-                font-family: "SF Compact Display", "SF Compact Text", "SF Compact", "SF Pro Display", "SF Pro Text", "SF Pro", "M PLUS 2", sans-serif;
+                font-family: "SF Compact Display", "SF Compact Text", "SF Compact", "SF Pro Display", "SF Pro Text", "SF Pro", "MesloLGS Nerd Font", sans-serif;
                 font-optical-sizing: auto;
                 font-weight: 400;
                 font-style: normal;
@@ -148,7 +147,7 @@
                 overflow-x: auto;
                 white-space: pre;
                 line-height: 32px;
-                font-family: "MesloLGS Nerd Font", "SF Mono", "M PLUS 1 Code", sans-serif;
+                font-family: "MesloLGS Nerd Font", "SF Mono", monospace, sans-serif;
                 font-optical-sizing: auto;
                 font-style: normal;
             }
@@ -161,7 +160,7 @@
                 border-color: oklch(75% 0 0);
                 border-radius: 5px;
                 white-space: pre;
-                font-family: "MesloLGS Nerd Font", "SF Mono", "M PLUS 1 Code", sans-serif;
+                font-family: "MesloLGS Nerd Font", "SF Mono", monospace, sans-serif;
                 font-optical-sizing: auto;
                 font-style: normal;
             }
