@@ -419,7 +419,7 @@
         <header class="flex">
             <div class="flex-1 flex">
                 <a href="/" class="text-highlight text-no-decoration"><span class="text-bold">Nercone</span> {% block extra_title %}Home{% endblock %}</a>
-                <p class="hide show-on-medium">{% block header_desc %}I am Cat.{% endblock %}</p>
+                <p class="hide show-on-medium">{% block header_desc %}{{ todays_phrase() }}{% endblock %}</p>
             </div>
             <div class="flex">
                 <a href="/access-counter/" class="text-no-decoration">#{{ get_counter() }}</a>
