@@ -427,10 +427,9 @@
                 <p>{% block header_desc %}I am Cat.{% endblock %}</p>
             </div>
             <div class="flex">
-                <a href="https://github.com/DiamondGotCat/" target="_blank" rel="noopener noreferrer" class="text-no-decoration">GitHub</a>
-                <a href="https://twitter.com/DiamondGotCat/" target="_blank" rel="noopener noreferrer" class="text-no-decoration">Twitter</a>
-                <a href="https://zenn.dev/techcat56/" target="_blank" rel="noopener noreferrer" class="hide show-on-medium text-no-decoration">Zenn</a>
-                <a href="https://qiita.com/DiamondGotCat/" target="_blank" rel="noopener noreferrer" class="hide show-on-medium text-no-decoration">Qiita</a>
+                <p>#{{ get_counter() }}</p>
+                <a href="/blog/" class="text-highlight text-no-decoration">Blog</a>
+                <a href="https://github.com/DiamondGotCat/nercone-webserver/" target="_blank" rel="noopener noreferrer" class="text-highlight text-no-decoration show-on-medium">Source Code</a>
             </div>
         </header>
         <main>{% block content %}{% endblock %}        </main>
@@ -439,9 +438,10 @@
                 <p class="text-highlight hide show-on-large">Copyright (c) 2025 DiamondGotCat</p>
             </div>
             <div class="flex">
-                <p>#{{ get_counter() }}</p>
-                <a href="/blog/" class="text-highlight text-no-decoration">Blog</a>
-                <a href="https://github.com/DiamondGotCat/nercone-webserver/" target="_blank" rel="noopener noreferrer" class="text-highlight text-no-decoration show-on-medium">Source Code</a>
+                <a href="https://github.com/DiamondGotCat/" target="_blank" rel="noopener noreferrer" class="text-no-decoration">GitHub</a>
+                <a href="https://twitter.com/DiamondGotCat/" target="_blank" rel="noopener noreferrer" class="text-no-decoration">Twitter</a>
+                <a href="https://zenn.dev/techcat56/" target="_blank" rel="noopener noreferrer" class="hide show-on-medium text-no-decoration">Zenn</a>
+                <a href="https://qiita.com/DiamondGotCat/" target="_blank" rel="noopener noreferrer" class="hide show-on-medium text-no-decoration">Qiita</a>
             </div>
         </footer>
     </body>
