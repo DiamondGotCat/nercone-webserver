@@ -371,6 +371,7 @@
                 document.addEventListener("click", (event) => {
                     const link = event.target.closest("a");
                     if (!link) return;
+                    if (link.hasAttribute('download')) return;
 
                     const url = new URL(link.href, location.href);
 
