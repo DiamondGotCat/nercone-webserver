@@ -403,9 +403,9 @@ async def middleware(request: Request, call_next):
         logger.log("Fatal exception in middleware!!!", level_text="ERROR")
         raise
 
-@app.api_route("/api/v1/status", methods=["GET"])
-async def v1_status(request: Request):
-    return JSONResponse({"status": "ok", "access_count": get_counter()}, status_code=200)
+@app.api_route("/cu", methods=["GET"])
+async def canonical_url_redirect(request: Request):
+    return RedirectResponse(url="https://diamondgotcat.net/")
 
 @app.api_route("/to/{url_id:path}", methods=["GET", "POST", "HEAD"])
 async def short_url(request: Request, url_id: str):
@@ -439,6 +439,10 @@ async def short_url(request: Request, url_id: str):
         request=request,
         name="to/404.html"
     )
+
+@app.api_route("/api/v1/status", methods=["GET"])
+async def v1_status(request: Request):
+    return JSONResponse({"status": "ok", "access_count": get_counter()}, status_code=200)
 
 @app.api_route("/{full_path:path}", methods=["GET", "POST", "HEAD"])
 async def default_response(request: Request, full_path: str) -> Response:
