@@ -8,17 +8,20 @@ import sqlite3
 import uvicorn
 import multiprocessing
 from enum import Enum
+from typing import cast
 from pathlib import Path
 from itertools import permutations
 from functools import lru_cache
 from zoneinfo import ZoneInfo
 from datetime import datetime, timezone
+from collections.abc import AsyncIterator
 from nercone_modern.color import ModernColor
 from nercone_modern.logging import ModernLogging
 from fastapi import FastAPI, Request, Response
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import FileResponse, PlainTextResponse, RedirectResponse, JSONResponse
 from jinja2.exceptions import TemplateNotFound
+from starlette.responses import StreamingResponse
 from bs4 import BeautifulSoup
 
 app = FastAPI()
@@ -26,6 +29,7 @@ templates = Jinja2Templates(directory="templates")
 log_filepath = Path(__file__).parent.joinpath("logs", "main.log")
 logger = ModernLogging("nercone-webserver", filepath=str(log_filepath))
 log_exclude_paths = ["status"]
+allowed_hostnames = ["localhost", "d-g-c.net", "diamondgotcat.net"]
 daily_phrases = [
     "Markitdownのネーミングセンス良いよね",
     "LinuxディストリビューションはFedoraが最強",
@@ -223,7 +227,9 @@ async def middleware(request: Request, call_next):
             if s_parts and s_parts != ['www']:
                 subdomains = s_parts
         response = None
-        if subdomains:
+        if not any([host.endswith(hostname) for hostname in allowed_hostnames]):
+            response = PlainTextResponse("許可されていないホスト名でのアクセスです。", status_code=400)
+        elif subdomains:
             retry_strategies = ["/".join(reversed(subdomains))]
             for p in permutations(subdomains):
                 path_candidate = "/".join(p)
@@ -306,17 +312,19 @@ async def middleware(request: Request, call_next):
         response.headers["Access-Control-Allow-Headers"] = "*"
         response_body = b""
         if not isinstance(response, (FileResponse, RedirectResponse)):
-            if hasattr(response, "body_iterator"):
-                async for chunk in response.body_iterator:
+            if isinstance(response, StreamingResponse):
+                body_iter = cast(AsyncIterator[bytes], response.body_iterator)
+                async for chunk in body_iter:
                     response_body += chunk
                 response = Response(
                     content=response_body,
                     status_code=response.status_code,
                     headers=dict(response.headers),
                     media_type=response.media_type,
+                    background=response.background,
                 )
-            elif hasattr(response, "body"):
-                response_body = response.body
+            else:
+                response_body = getattr(response, "body", b"") or b""
         end_time = datetime.now(timezone.utc)
         access_log_dir = Path(__file__).parent.joinpath("logs", "access")
         if not access_log_dir.exists():
