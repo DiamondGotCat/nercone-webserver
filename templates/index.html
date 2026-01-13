@@ -1,31 +1,21 @@
 {% extends "/base.html" %}
 {% block title %}Nercone's Website{% endblock %}
 {% block description %}作りたいものを作り、やりたくないことからは逃げる学生{% endblock %}
+{% block extra_head %}
+        <style>
+            main {
+                display: grid;
+                grid-template-rows: auto 1fr auto;
+            }
+            .big-text {
+                margin: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 64pt;
+            }
+        </style>
+{% endblock %}
 {% block content %}
-            <h1>Nercone's Website</h1>
-            <p class="text-bold">作りたいものを作り、やりたくないことからは逃げる学生</p>
-            <a href="/about/" class="text-no-decoration">
-                <div class="block">
-                    <h3>About</h3>
-                    <p>Nerconeについて</p>
-                </div>
-            </a>
-            <a href="/blog/" class="text-no-decoration">
-                <div class="block">
-                    <h3>Blog</h3>
-                    <p>たまに更新してるブログ</p>
-                </div>
-            </a>
-            <a href="/projects/" class="text-no-decoration">
-                <div class="block">
-                    <h3>Projects</h3>
-                    <p>主なプロジェクトたち</p>
-                </div>
-            </a>
-            <a href="/links/" class="text-no-decoration">
-                <div class="block">
-                    <h3>Links</h3>
-                    <p>リンクたち</p>
-                </div>
-            </a>
+            <p class="text-highlight big-text">NERCONE</p>
 {% endblock %}
