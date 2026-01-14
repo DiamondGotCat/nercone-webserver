@@ -3,23 +3,23 @@
   <defs>
     <style>
       .cls-1 {
-        fill: none;
-        stroke: #a8a8a8;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        stroke-width: 20px;
+        fill: #404040;
       }
 
       .cls-2 {
-        fill: #202020;
+        fill: #ccc;
       }
     </style>
   </defs>
-  <rect class="cls-2" x="0" y="0" width="720" height="720" rx="360" ry="360"/>
+  <rect class="cls-1" x="0" y="0" width="720" height="720" rx="360" ry="360"/>
   <g>
-    <line class="cls-1" x1="191.25" y1="495" x2="191.25" y2="225"/>
-    <line class="cls-1" x1="191.25" y1="225" x2="461.25" y2="225"/>
-    <line class="cls-1" x1="191.25" y1="225" x2="461.25" y2="495"/>
-    <polyline class="cls-1" points="528.75 225 393.75 360 528.75 495"/>
+    <rect class="cls-2" x="156" y="264" width="48" height="192"/>
+    <rect class="cls-2" x="300" y="336" width="48" height="120"/>
+    <rect class="cls-2" x="228" y="264" width="48" height="120"/>
+    <rect class="cls-2" x="372" y="264" width="48" height="192"/>
+    <rect class="cls-2" x="444" y="264" width="48" height="192"/>
+    <rect class="cls-2" x="516" y="264" width="48" height="48"/>
+    <rect class="cls-2" x="516" y="336" width="48" height="48"/>
+    <rect class="cls-2" x="516" y="408" width="48" height="48"/>
   </g>
 </svg>
