@@ -33,7 +33,7 @@ onion_hostname = "4sbb7xhdn4meuesnqvcreewk6sjnvchrsx4lpnxmnjhz2soat74finid.onion
 templates.env.globals["onion_site_url"] = f"http://{onion_hostname}/"
 allowed_hostnames = ["localhost", "d-g-c.net", "diamondgotcat.net", onion_hostname]
 daily_phrases = [
-    "Markitdownのネーミングセンス良いよね",
+    "MarkItDownのネーミングセンス良いよね",
     "LinuxディストリビューションはFedoraが最強",
     "そろそろC++とかRustとか学ばなきゃだな",
     "MicrosoftはGitHubだけやってればいい",
